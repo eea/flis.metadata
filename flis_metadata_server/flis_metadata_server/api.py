@@ -18,10 +18,6 @@ def is_replicated_model(cls):
             cls != ReplicatedModel)
 
 
-replicated_models = inspect.getmembers(
-    sys.modules['flis_metadata_server.models'], is_replicated_model)
-
-
 def build_resource(model_name, cls):
     """Build a resource from a base class."""
     name = model_name + "Resource"
@@ -34,6 +30,11 @@ def build_resource(model_name, cls):
     Resource = type(name, (ModelResource, ), {'Meta': Meta})
 
     return Resource
+
+
+replicated_models = inspect.getmembers(
+    sys.modules['flis_metadata_server.models'], is_replicated_model)
+
 
 # Append any other custom resources to this list
 resources = [build_resource(name, cls) for name, cls in replicated_models]
