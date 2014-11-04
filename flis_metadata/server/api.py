@@ -1,21 +1,7 @@
 """Dynamically add resources for ReplicatedModel classes in models.py."""
-import inspect
-import sys
-
-from flis_metadata.common.models import ReplicatedModel
+from flis_metadata.common.models import get_replicated_models
 
 from tastypie.resources import ModelResource
-
-
-def is_replicated_model(cls):
-    """Check wether a class is a model to be replicated.
-
-    This is implementend by extracting all models that inherit from
-    ReplicatedModel
-    """
-    return (inspect.isclass(cls) and
-            issubclass(cls, ReplicatedModel) and
-            cls != ReplicatedModel)
 
 
 def build_resource(model_name, cls):
@@ -32,9 +18,5 @@ def build_resource(model_name, cls):
     return Resource
 
 
-replicated_models = inspect.getmembers(
-    sys.modules['flis_metadata.common.models'], is_replicated_model)
-
-
 # Append any other custom resources to this list
-resources = [build_resource(name, cls) for name, cls in replicated_models]
+resources = [build_resource(name, cls) for name, cls in get_replicated_models()]
