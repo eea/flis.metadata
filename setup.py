@@ -9,7 +9,10 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 setup(
     name='django-flis-metadata-client',
     version='0.1',
-    packages=['flis_metadata_client'],
+    packages=['flis_metadata',
+              'flis_metadata.client',
+              'flis_metadata.common',
+              'flis_metadata.common.migrations'],
     include_package_data=True,
     license='BSD License',
     description='EEA Metadata models replication support',

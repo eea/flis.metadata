@@ -1,5 +1,5 @@
 """
-Django settings for flis_metadata_server project.
+Django settings for flis_metadata project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -36,7 +36,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'flis_metadata_server',
+    'flis_metadata.common',
+    'flis_metadata.server',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -49,9 +50,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'flis_metadata_server.urls'
+ROOT_URLCONF = 'flis_metadata.server.urls'
 
-WSGI_APPLICATION = 'flis_metadata_server.wsgi.application'
+WSGI_APPLICATION = 'flis_metadata.server.wsgi.application'
 
 
 # Database

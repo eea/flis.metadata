@@ -2,7 +2,7 @@
 import inspect
 import sys
 
-from flis_metadata_server.models import ReplicatedModel
+from flis_metadata.common.models import ReplicatedModel
 
 from tastypie.resources import ModelResource
 
@@ -33,7 +33,7 @@ def build_resource(model_name, cls):
 
 
 replicated_models = inspect.getmembers(
-    sys.modules['flis_metadata_server.models'], is_replicated_model)
+    sys.modules['flis_metadata.common.models'], is_replicated_model)
 
 
 # Append any other custom resources to this list
