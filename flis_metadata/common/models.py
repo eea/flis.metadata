@@ -26,6 +26,26 @@ class GeographicalScope(ReplicatedModel):
         return self.title
 
 
+class EnvironmentalTheme(ReplicatedModel):
+
+    title = CharField(max_length=128)
+
+    class Meta:
+        ordering = ('-pk',)
+
+    def __unicode__(self):
+        return self.title
+
+
+class Country(ReplicatedModel):
+
+    iso = CharField(max_length=2, primary_key=True)
+    name = CharField(max_length=128)
+
+    def __unicode__(self):
+        return self.name
+
+
 def _is_replicated_model(cls):
     """Check wether a class is a model to be replicated.
 
