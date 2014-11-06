@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import sys
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -84,6 +85,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Local settings may require extra installed apps for dev purposes.
 EXTRA_INSTALLED_APPS = ()
 
 try:
@@ -92,3 +94,9 @@ except ImportError:
     pass
 
 INSTALLED_APPS += EXTRA_INSTALLED_APPS
+
+if 'test' in sys.argv:
+    try:
+        from test_settings import *
+    except ImportError:
+        pass
