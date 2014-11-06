@@ -11,6 +11,8 @@ class ReplicatedModel(Model):
     class Meta:
         abstract = True
 
+    is_deleted = BooleanField(default=False)
+
 
 class GeographicalScope(ReplicatedModel):
 

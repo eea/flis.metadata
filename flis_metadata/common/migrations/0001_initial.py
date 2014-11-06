@@ -14,6 +14,7 @@ class Migration(migrations.Migration):
             name='GeographicalScope',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('is_deleted', models.BooleanField(default=False)),
                 ('title', models.CharField(max_length=128)),
                 ('require_country', models.BooleanField(default=False)),
             ],
