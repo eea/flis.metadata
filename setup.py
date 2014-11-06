@@ -13,6 +13,7 @@ setup(
               'flis_metadata.client',
               'flis_metadata.common',
               'flis_metadata.common.migrations'],
+    install_requires=['requests'],
     include_package_data=True,
     license='BSD License',
     description='EEA Metadata models replication support',
