@@ -2,6 +2,7 @@ import requests
 import json
 
 from django.conf import settings
+from django.db import transaction
 from django.core.management.base import BaseCommand
 from flis_metadata.common.models import get_replicated_models
 
@@ -40,7 +41,21 @@ def get_model_instances(name, model):
 
         endpoint = settings.METADATA_REMOTE_HOST + response_obj['meta']['next']
 
+    # Remove default resource_uri field
+    for o in objects:
+        o.pop('resource_uri')
+
     return objects
+
+
+@transaction.atomic
+def update_model_instances(name, model):
+    """Update local model for model data from remote instances."""
+    instances = get_model_instances(name, model)
+
+    for instance in instances:
+        obj = model(**instance)
+        obj.save()
 
 
 class Command(BaseCommand):
@@ -48,5 +63,4 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         for name, model in get_replicated_models():
-            print name
-            print get_model_instances(name, model)
+            update_model_instances(name, model)
