@@ -63,4 +63,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         for name, model in get_replicated_models():
+            print 'Syncing {0}: ...'.format(name),
             update_model_instances(name, model)
+            print 'done!'
