@@ -31,8 +31,17 @@ urlpatterns = patterns(
         views.GeographicalScopesEnableDisableView.as_view(),
         name='geographical_scopes_enable_disable'),
 
-    url(r'^countries/$', views.GeographicalScopesView.as_view(),
+    url(r'^countries/$', views.CountriesView.as_view(),
         name='countries'),
+    url(r'^countries/new$',
+        views.CountriesAddView.as_view(),
+        name='countries_edit'),
+    url(r'^environmental_themes/(?P<pk>\w{2})/edit$',
+        views.CountryEditView.as_view(),
+        name='countries_edit'),
+    url(r'^environmental_themes/(?P<pk>\w{2})/enable_disable$',
+        views.CountryEnableDisableView.as_view(),
+        name='countries_enable_disable'),
 
     url(r'^environmental_themes/$', views.EnvironmentalThemesView.as_view(),
         name='environmental_themes'),

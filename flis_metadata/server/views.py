@@ -90,3 +90,37 @@ class EnvironmentalThemeEnableDisableView(EnableDisableView):
 
     def get_success_url(self):
         return reverse('environmental_themes')
+
+
+class CountriesView(ListView):
+    model = models.Country
+    template_name = 'countries.html'
+
+
+class CountriesAddView(SuccessMessageMixin,
+                       CreateView):
+    model = models.Country
+    template_name = 'countries_edit.html'
+    success_message = 'Country added successfully'
+
+    def get_success_url(self):
+        return reverse('countries')
+
+
+class CountryEditView(SuccessMessageMixin,
+                      UpdateView):
+
+    model = models.Country
+    template_name = 'countries_edit.html'
+    success_message = 'Country updated successfully'
+
+    def get_success_url(self):
+        return reverse('countries')
+
+
+class CountryEnableDisableView(EnableDisableView):
+    model = models.Country
+    success_message = 'Country updated successfully'
+
+    def get_success_url(self):
+        return reverse('countries')
