@@ -45,7 +45,7 @@ def get_model_instances(name, model):
 
         endpoint = settings.METADATA_REMOTE_HOST + response_obj['meta']['next']
     else:
-        raise MaxRequestsReached
+        raise MaxRequestsReached()
 
     # Remove default resource_uri field
     for o in objects:
