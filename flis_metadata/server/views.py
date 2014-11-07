@@ -56,3 +56,37 @@ class GeographicalScopesEnableDisableView(EnableDisableView):
 
     def get_success_url(self):
         return reverse('geographical_scopes')
+
+
+class EnvironmentalThemesView(ListView):
+    model = models.EnvironmentalTheme
+    template_name = 'environmental_themes.html'
+
+
+class EnvironmentalThemesAddView(SuccessMessageMixin,
+                                 CreateView):
+    model = models.EnvironmentalTheme
+    template_name = 'environmental_themes_edit.html'
+    success_message = 'Theme added successfully'
+
+    def get_success_url(self):
+        return reverse('environmental_themes')
+
+
+class EnvironmentalThemeEditView(SuccessMessageMixin,
+                                 UpdateView):
+
+    model = models.EnvironmentalTheme
+    template_name = 'environmental_themes_edit.html'
+    success_message = 'Theme updated successfully'
+
+    def get_success_url(self):
+        return reverse('environmental_themes')
+
+
+class EnvironmentalThemeEnableDisableView(EnableDisableView):
+    model = models.EnvironmentalTheme
+    success_message = 'Theme updated successfully'
+
+    def get_success_url(self):
+        return reverse('environmental_themes')

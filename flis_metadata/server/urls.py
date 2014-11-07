@@ -33,6 +33,16 @@ urlpatterns = patterns(
 
     url(r'^countries/$', views.GeographicalScopesView.as_view(),
         name='countries'),
-    url(r'environmental_themes/$', views.GeographicalScopesView.as_view(),
+
+    url(r'^environmental_themes/$', views.EnvironmentalThemesView.as_view(),
         name='environmental_themes'),
+    url(r'^environmental_themes/new$',
+        views.EnvironmentalThemesAddView.as_view(),
+        name='environmental_themes_edit'),
+    url(r'^environmental_themes/(?P<pk>\d+)/edit$',
+        views.EnvironmentalThemeEditView.as_view(),
+        name='environmental_themes_edit'),
+    url(r'^environmental_themes/(?P<pk>\d+)/enable_disable$',
+        views.EnvironmentalThemeEnableDisableView.as_view(),
+        name='environmental_themes_enable_disable'),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

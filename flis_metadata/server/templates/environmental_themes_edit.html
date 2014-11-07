@@ -1,0 +1,53 @@
+{% extends '_layout.html' %}
+{% load widget_tweaks %}
+
+
+{% block title %}
+
+  {{ block.super }} -  Environmental Themes
+
+{% endblock %}
+
+
+{% block content %}
+
+  {% include '_messages.html' %}
+
+  {% if object %}
+    {% url 'environmental_themes_enable_disable' pk=object.pk as enable_disable_url %}
+    <div class="actions">
+        <form method="POST" role="form" action={{enable_disable_url}}>
+        {% include 'enable_disable_form.html' with object=object%}
+        </form>
+    </div>
+  {% endif %}
+
+  <form id="geographical-scopes-form" method="POST" role="form">
+
+    {% csrf_token %}
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-9">
+          {{ form.title.label_tag }}
+          {% if form.title.field.required %}
+            <span class="required">*</span>
+          {% endif %}
+
+          {% render_field form.title class='form-control' %}
+          {% if form.title.errors %}
+            <p class="text-danger">
+              <small>{{ form.title.errors.0 }}</small></p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group form-footer" style="margin-bottom: 0">
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+
+
+  </form>
+
+{% endblock %}
