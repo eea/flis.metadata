@@ -1,5 +1,5 @@
 """
-Django settings for flis_metadata_server project.
+Django settings for flis_metadata project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import sys
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -36,7 +37,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'flis_metadata_server',
+    'flis_metadata.common',
+    'flis_metadata.server',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -49,9 +51,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'flis_metadata_server.urls'
+ROOT_URLCONF = 'flis_metadata.server.urls'
 
-WSGI_APPLICATION = 'flis_metadata_server.wsgi.application'
+WSGI_APPLICATION = 'flis_metadata.server.wsgi.application'
 
 
 # Database
@@ -82,3 +84,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Local settings may require extra installed apps for dev purposes.
+EXTRA_INSTALLED_APPS = ()
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
+
+INSTALLED_APPS += EXTRA_INSTALLED_APPS
+
+if 'test' in sys.argv:
+    try:
+        from test_settings import *
+    except ImportError:
+        pass

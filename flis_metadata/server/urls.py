@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from tastypie.api import Api
 
-from flis_metadata_server.api import resources
+from flis_metadata.server.api import resources
 
 v1_api = Api(api_name="v1")
 for resource in resources:
