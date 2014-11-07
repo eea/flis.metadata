@@ -138,3 +138,20 @@ class SyncRemoteModelsTest(TestCase):
             returned_titles = [o['title'] for o in objs]
 
             self.assertEqual(expected_titles, returned_titles)
+
+    def test_exception_raised_on_max_requests(self):
+
+        # Generate MAX_REQUESTS * 2 objects and serve them one per page
+        # In this way the client should make more than MAX_REQUESTS to
+        # get all objects
+        obj_extra_count = sync_remote_models.MAX_REQUESTS * 2
+        self.objects += [GeographicalScopeFactory()
+                         for _ in range(obj_extra_count)]
+
+        with patch('flis_metadata.client.management.commands.'
+                   'sync_remote_models.requests.get', GetMock(self.objects,
+                                                              res_per_page=1)):
+            self.assertRaises(sync_remote_models.MaxRequestsReached,
+                              sync_remote_models.get_model_instances,
+                              'GeographicalScope',
+                              GeographicalScope)

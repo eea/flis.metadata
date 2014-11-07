@@ -13,6 +13,10 @@ class RemoteException(Exception):
     pass
 
 
+class MaxRequestsReached(Exception):
+    pass
+
+
 MAX_REQUESTS = 100
 
 
@@ -40,6 +44,8 @@ def get_model_instances(name, model):
             break
 
         endpoint = settings.METADATA_REMOTE_HOST + response_obj['meta']['next']
+    else:
+        raise MaxRequestsReached
 
     # Remove default resource_uri field
     for o in objects:
