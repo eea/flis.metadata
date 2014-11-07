@@ -3,45 +3,60 @@
 
 {% block title %}
 
-  {{ block.super }} -  Geographical Scopes
+{{ block.super }} -  Geographical Scopes
 
 {% endblock %}
 
 
 {% block content %}
 
-  {% include '_messages.html' %}
+{% include '_messages.html' %}
 
-  {% url 'settings:geographical_scopes_edit' as add_url %}
-  <div class="actions">
+{% url 'geographical_scopes_edit' as add_url %}
+<div class="actions">
     <a href="{{ add_url }}" class="btn btn-primary">Add new scope</a>
-  </div>
+</div>
 
-  {% if object_list %}
+{% if object_list %}
 
-    <table id="settings" width="100%"
-           class="table table-condensed table-bordered table-hover">
+<table id="settings" width="100%"
+    class="table table-condensed table-bordered table-hover">
 
-      <thead>
+    <thead>
         <tr>
-          <th>Title</th>
+            <th>Title</th>
+            <th></th>
+            <th>Enabled in Choices</th>
         </tr>
-      </thead>
+    </thead>
 
-      <tbody>
-        {% for object in object_list %}
-          {% url 'geographical_scopes' as edit_url %}
-          <tr>
-            <td>
-              <a href="{{ edit_url }}">{{ object.title }}</a>
-            </td>
-          </tr>
-        {% endfor %}
-      </tbody>
+    <tbody>
+    {% for object in object_list %}
+    {% url 'geographical_scopes_edit' pk=object.pk as edit_url %}
+    <tr>
+        <td>
+            <a href="{{ edit_url }}">{{ object.title }}</a>
+        </td>
+        <td>
+            {% url 'geographical_scopes_enable_disable' pk=object.pk as enable_disable_url %}
+            <form method="POST" role="form" action={{enable_disable_url}}>
+                {% include 'enable_disable_form.html' with object=object %}
+            </form>
+        </td>
+        <td>
+            {% if object.is_deleted %}
+            <span class="glyphicon glyphicon-remove"></span>
+            {% else %}
+            <span class="glyphicon glyphicon-ok"></span>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
 
-    </table>
+</table>
 
-  {% endif %}
+{% endif %}
 
 
 {% endblock%}

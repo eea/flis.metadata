@@ -18,8 +18,19 @@ urlpatterns = patterns(
     url(r'^api/', include(v1_api.urls)),
 
     url(r'^$', views.HomeView.as_view(), name='home_view'),
+
     url(r'^geographical_scopes/$', views.GeographicalScopesView.as_view(),
         name='geographical_scopes'),
+    url(r'^geographical_scopes/new$',
+        views.GeographicalScopesAddView.as_view(),
+        name='geographical_scopes_edit'),
+    url(r'^geographical_scopes/(?P<pk>\d+)/edit$',
+        views.GeographicalScopesEditView.as_view(),
+        name='geographical_scopes_edit'),
+    url(r'^geographical_scopes/(?P<pk>\d+)/enable_disable$',
+        views.GeographicalScopesEnableDisableView.as_view(),
+        name='geographical_scopes_enable_disable'),
+
     url(r'^countries/$', views.GeographicalScopesView.as_view(),
         name='countries'),
     url(r'environmental_themes/$', views.GeographicalScopesView.as_view(),

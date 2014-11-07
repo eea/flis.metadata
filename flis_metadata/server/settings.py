@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_assets',
+    'widget_tweaks',
     'frame',
     'flis_metadata.common',
     'flis_metadata.server',
