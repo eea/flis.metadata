@@ -11,10 +11,11 @@
 {% block content %}
 
 {% include '_messages.html' %}
+{% include '_nav.html' %}
 
 {% url 'environmental_themes_edit' as add_url %}
 <div class="actions">
-    <a href="{{ add_url }}" class="btn btn-primary">Add new theme</a>
+    <a href="{{ add_url }}" class="btn btn-primary">Add new Theme</a>
 </div>
 
 {% if object_list %}

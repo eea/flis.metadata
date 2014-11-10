@@ -4,7 +4,7 @@
 
 {% block title %}
 
-  {{ block.super }} -  Environmental Themes
+  {{ block.super }} -   Countries
 
 {% endblock %}
 
@@ -12,6 +12,7 @@
 {% block content %}
 
   {% include '_messages.html' %}
+  {% include '_nav.html' %}
 
   {% if object %}
     {% url 'countries_enable_disable' pk=object.pk as enable_disable_url %}

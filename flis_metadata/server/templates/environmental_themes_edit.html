@@ -12,6 +12,7 @@
 {% block content %}
 
   {% include '_messages.html' %}
+  {% include '_nav.html' %}
 
   {% if object %}
     {% url 'environmental_themes_enable_disable' pk=object.pk as enable_disable_url %}
