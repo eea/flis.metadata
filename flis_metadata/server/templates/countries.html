@@ -25,6 +25,7 @@
 
     <thead>
         <tr>
+            <th>ISO</th>
             <th>Name</th>
             <th>Enabled in Choices</th>
             <th></th>
@@ -35,6 +36,9 @@
     {% for object in object_list %}
     {% url 'countries_edit' pk=object.pk as edit_url %}
     <tr>
+        <td>
+            <a href="{{ edit_url }}">{{ object.iso }}</a>
+        </td>
         <td>
             <a href="{{ edit_url }}">{{ object.name }}</a>
         </td>
@@ -54,7 +58,6 @@
     </tr>
     {% endfor %}
     </tbody>
-
 </table>
 
 {% endif %}

@@ -1,4 +1,3 @@
-from django import forms
 from django.core.urlresolvers import reverse
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import CreateView
@@ -7,13 +6,8 @@ from django.views.generic import TemplateView
 from django.views.generic import UpdateView
 
 from flis_metadata.common import models
-
-
-class EnableDisableForm(forms.ModelForm):
-    fields = ['is_deleted']
-
-    class Meta:
-        model = models.ReplicatedModel
+from flis_metadata.server.forms import EnableDisableForm
+from flis_metadata.server.forms import CountryEditForm
 
 
 class EnableDisableView(SuccessMessageMixin,
@@ -114,6 +108,7 @@ class CountryEditView(SuccessMessageMixin,
     model = models.Country
     template_name = 'countries_edit.html'
     success_message = 'Country updated successfully'
+    form_class = CountryEditForm
 
     def get_success_url(self):
         return reverse('countries')

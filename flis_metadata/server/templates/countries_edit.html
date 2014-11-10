@@ -28,6 +28,22 @@
     {% csrf_token %}
 
     <div class="form-group">
+      {% if not object %}
+      <div class="row">
+        <div class="col-md-9">
+          {{ form.iso.label_tag }}
+          {% if form.iso.field.required %}
+            <span class="required">*</span>
+          {% endif %}
+
+          {% render_field form.iso class='form-control' %}
+          {% if form.iso.errors %}
+            <p class="text-danger">
+              <small>{{ form.iso.errors.0 }}</small></p>
+          {% endif %}
+        </div>
+      </div>
+      {% endif %}
       <div class="row">
         <div class="col-md-9">
           {{ form.name.label_tag }}
