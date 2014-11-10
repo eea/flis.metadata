@@ -7,7 +7,7 @@ README = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
-    name='django-flis-metadata-client',
+    name='eea.flis.metadata',
     version='0.1',
     packages=['flis_metadata',
               'flis_metadata.client',
@@ -20,6 +20,7 @@ setup(
     description='EEA Metadata models replication support',
     long_description=README,
     author='Mihai Bivol',
+    url='https://github.com/eea/flis.metadata',
     author_email='mm.bivol@gmail.com',
     classifiers=[
         'Environment :: Web Environment',
