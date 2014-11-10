@@ -10,9 +10,10 @@ from flis_metadata.common import models
 
 
 class EnableDisableForm(forms.ModelForm):
+    fields = ['is_deleted']
+
     class Meta:
         model = models.ReplicatedModel
-        fields = ['is_deleted']
 
 
 class EnableDisableView(SuccessMessageMixin,
