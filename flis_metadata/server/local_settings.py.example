@@ -3,3 +3,5 @@ EXTRA_INSTALLED_APPS = (
 )
 
 METADATA_REMOTE_API = 'http://localhost:8000/api/v1/'
+
+ASSETS_DEBUG = True

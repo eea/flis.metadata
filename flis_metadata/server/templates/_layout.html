@@ -1,0 +1,37 @@
+{% extends 'frame.html' %}
+{% load assets %}
+
+{% block head %}
+
+  {% assets "css" %}
+    <link href="{{ ASSET_URL }}" rel="stylesheet">
+  {% endassets %}
+
+  <title>
+    {% block title %}
+        Flis Metadata
+    {% endblock %}
+  </title>
+  {% block extra_head %}{% endblock %}
+
+{% endblock %}
+
+
+{% block zope_content %}
+
+  <script>
+  </script>
+
+  <div class="content clearfix">
+    <h1>Flis Metadata</h1>
+    {% block content %}{% endblock %}
+  </div>
+
+
+  {% assets "js" %}
+    <script src="{{ ASSET_URL }}"></script>
+  {% endassets %}
+
+  {% block scripts %}{% endblock %}
+
+{% endblock %}

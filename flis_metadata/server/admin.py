@@ -1,4 +1,6 @@
 from django.contrib import admin
-from flis_metadata.common.models import GeographicalScope
+from flis_metadata.common import models
 
-admin.site.register(GeographicalScope)
+admin.site.register(models.GeographicalScope)
+admin.site.register(models.Country)
+admin.site.register(models.EnvironmentalTheme)

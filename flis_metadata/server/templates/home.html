@@ -1,0 +1,28 @@
+{% extends '_layout.html' %}
+
+{% block title %}
+
+  {{ block.super }} -  Flis Metadata
+
+{% endblock %}
+
+
+{% block content %}
+
+  {% include '_messages.html' %}
+
+<ul>
+    <li>
+    <a href={% url 'countries' %}> Countries </a>
+    </li>
+
+    <li>
+    <a href={% url 'geographical_scopes' %}> Geographical Scopes </a>
+    </li>
+
+    <li>
+    <a href={% url 'environmental_themes' %}> Environmental Themes </a>
+    </li>
+</ul>
+
+{% endblock %}

@@ -1,0 +1,141 @@
+
+body {
+    /*padding-top: 25px;*/
+}
+
+h1 {
+    padding-bottom: 20px;
+}
+
+a {
+    cursor: pointer;
+}
+
+.center-block {
+    float: none;
+}
+
+.label-container .popover {
+    margin-top: 0;
+}
+
+.page-title {
+    margin-bottom: 35px;
+}
+
+.form-footer {
+    padding-bottom: 25px;
+}
+
+.dataTables_filter {
+    float: right;
+}
+
+.actions li {
+    display: inline;
+    padding-right: 10px;
+}
+
+.filters .first-filter {
+    margin-left: 20px;
+}
+.filters .form-group {
+    padding-right: 20px;
+}
+
+.table-detail th {
+    width: 220px;
+}
+.table-detail .hd th {
+    text-align: center;
+    background: #efefef;
+}
+
+.actions {
+    margin-bottom: 25px;
+}
+
+.right-float{
+    float: right !important;
+}
+
+.left-float{
+    float: left !important;
+}
+
+.btn-primary{
+    color: white !important;
+}
+
+.red{
+    color: red;
+}
+
+.blue{
+    color: #0061a2;
+}
+
+.black{
+    color: black;
+}
+
+.grey{
+    color: #495b6b;
+    background: #fff !important;
+}
+
+.white{
+    color: #fff;
+}
+
+.legend{
+    border: 1px solid black;
+    padding: 1em;
+    margin-left: 580px;
+    max-width: 400px;
+}
+
+.legend li{
+    margin-bottom: 1em;
+}
+
+li.right-float ul.dropdown-menu{
+     margin-left: -80px;
+}
+
+.logo {
+    background: #fff;
+    float: right;
+    height: 60px;
+}
+.logo img {
+    margin-left: -90px;
+    position: absolute;
+    margin-top: -17px;
+}
+#middle_port h1 {
+    padding: 40px 0 0 5px !important;
+    margin-top: 0;
+}
+
+.dropdown-menu {
+    z-index: 10000;
+}
+
+.table>thead>tr>th, .table>tbody>tr>th,
+.table>tfoot>tr>th, .table>thead>tr>td,
+.table>tbody>tr>td, .table>tfoot>tr>td {
+    border: none;
+}
+
+div.outcome {
+    margin-top: 10px;
+}
+
+.status {
+    display: inline !important;
+}
+
+.btn-danger {
+    color: #FFFFFF !important;
+}

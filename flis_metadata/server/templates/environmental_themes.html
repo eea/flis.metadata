@@ -1,0 +1,70 @@
+{% extends '_layout.html' %}
+
+
+{% block title %}
+
+{{ block.super }} -  Environmental Themes
+
+{% endblock %}
+
+
+{% block content %}
+
+{% include '_messages.html' %}
+{% include '_nav.html' %}
+
+{% url 'environmental_themes_edit' as add_url %}
+<div class="actions">
+    <a href="{{ add_url }}" class="btn btn-primary">Add new Theme</a>
+</div>
+
+{% if object_list %}
+
+<table id="settings" width="100%"
+    class="table table-condensed table-bordered table-hover">
+
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Enabled in Choices</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+    {% for object in object_list %}
+    {% url 'environmental_themes_edit' pk=object.pk as edit_url %}
+    <tr>
+        <td>
+            <a href="{{ edit_url }}">{{ object.title }}</a>
+        </td>
+        <td>
+            {% if object.is_deleted %}
+            <span class="glyphicon glyphicon-remove"></span>
+            {% else %}
+            <span class="glyphicon glyphicon-ok"></span>
+            {% endif %}
+        </td>
+        <td>
+            {% url 'environmental_themes_enable_disable' pk=object.pk as enable_disable_url %}
+            <form method="POST" role="form" action={{enable_disable_url}}>
+                {% include 'enable_disable_form.html' with object=object %}
+            </form>
+        </td>
+   </tr>
+    {% endfor %}
+    </tbody>
+
+</table>
+
+{% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        $('#settings').DataTable();
+    } );
+</script>
+{% endblock %}

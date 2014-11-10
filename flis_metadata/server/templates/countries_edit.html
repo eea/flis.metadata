@@ -1,0 +1,70 @@
+{% extends '_layout.html' %}
+{% load widget_tweaks %}
+
+
+{% block title %}
+
+  {{ block.super }} -   Countries
+
+{% endblock %}
+
+
+{% block content %}
+
+  {% include '_messages.html' %}
+  {% include '_nav.html' %}
+
+  {% if object %}
+    {% url 'countries_enable_disable' pk=object.pk as enable_disable_url %}
+    <div class="actions">
+        <form method="POST" role="form" action={{enable_disable_url}}>
+        {% include 'enable_disable_form.html' with object=object%}
+        </form>
+    </div>
+  {% endif %}
+
+  <form id="countries-form" method="POST" role="form">
+
+    {% csrf_token %}
+
+    <div class="form-group">
+      {% if not object %}
+      <div class="row">
+        <div class="col-md-9">
+          {{ form.iso.label_tag }}
+          {% if form.iso.field.required %}
+            <span class="required">*</span>
+          {% endif %}
+
+          {% render_field form.iso class='form-control' %}
+          {% if form.iso.errors %}
+            <p class="text-danger">
+              <small>{{ form.iso.errors.0 }}</small></p>
+          {% endif %}
+        </div>
+      </div>
+      {% endif %}
+      <div class="row">
+        <div class="col-md-9">
+          {{ form.name.label_tag }}
+          {% if form.name.field.required %}
+            <span class="required">*</span>
+          {% endif %}
+
+          {% render_field form.name class='form-control' %}
+          {% if form.name.errors %}
+            <p class="text-danger">
+              <small>{{ form.name.errors.0 }}</small></p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group form-footer" style="margin-bottom: 0">
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+
+
+  </form>
+
+{% endblock %}
