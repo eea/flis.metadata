@@ -45,13 +45,27 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'frame.middleware.RequestMiddleware',
+    'frame.middleware.UserMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.RemoteUserMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
+
+TEMPLATE_LOADRES = (
+    'frame.middleware.Loader',
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'frame.backends.FrameUserBackend',
 )
 
 ROOT_URLCONF = 'flis_metadata.server.urls'

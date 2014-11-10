@@ -1,3 +1,4 @@
+from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import CreateView
@@ -10,22 +11,49 @@ from flis_metadata.server.forms import EnableDisableForm
 from flis_metadata.server.forms import CountryEditForm
 
 
-class EnableDisableView(SuccessMessageMixin,
-                        UpdateView):
+class AdminRequiredMixin(object):
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated():
+            raise PermissionDenied()
+        if not request.user.has_perm('common.config'):
+            raise PermissionDenied()
+        return super(AdminRequiredMixin, self).dispatch(request, *args,
+                                                        **kwargs)
+
+
+class MetadataEnableDisableView(AdminRequiredMixin,
+                                SuccessMessageMixin,
+                                UpdateView):
     form_class = EnableDisableForm
 
 
-class HomeView(TemplateView):
+class MetadataCreateView(AdminRequiredMixin,
+                         SuccessMessageMixin,
+                         CreateView):
+    pass
+
+
+class MetadataUpdateView(AdminRequiredMixin,
+                         SuccessMessageMixin,
+                         UpdateView):
+    pass
+
+
+class MetadataListView(AdminRequiredMixin,
+                       ListView):
+    pass
+
+
+class HomeView(AdminRequiredMixin, TemplateView):
     template_name = 'home.html'
 
 
-class GeographicalScopesView(ListView):
+class GeographicalScopesView(MetadataListView):
     model = models.GeographicalScope
     template_name = 'geographical_scopes.html'
 
 
-class GeographicalScopesAddView(SuccessMessageMixin,
-                                CreateView):
+class GeographicalScopesAddView(MetadataCreateView):
     model = models.GeographicalScope
     template_name = 'geographical_scopes_edit.html'
     success_message = 'Scope added successfully'
@@ -34,9 +62,7 @@ class GeographicalScopesAddView(SuccessMessageMixin,
         return reverse('geographical_scopes')
 
 
-class GeographicalScopesEditView(SuccessMessageMixin,
-                                 UpdateView):
-
+class GeographicalScopesEditView(MetadataUpdateView):
     model = models.GeographicalScope
     template_name = 'geographical_scopes_edit.html'
     success_message = 'Scope updated successfully'
@@ -45,7 +71,7 @@ class GeographicalScopesEditView(SuccessMessageMixin,
         return reverse('geographical_scopes')
 
 
-class GeographicalScopesEnableDisableView(EnableDisableView):
+class GeographicalScopesEnableDisableView(MetadataEnableDisableView):
     model = models.GeographicalScope
     success_message = 'Scope updated successfully'
 
@@ -53,13 +79,12 @@ class GeographicalScopesEnableDisableView(EnableDisableView):
         return reverse('geographical_scopes')
 
 
-class EnvironmentalThemesView(ListView):
+class EnvironmentalThemesView(MetadataListView):
     model = models.EnvironmentalTheme
     template_name = 'environmental_themes.html'
 
 
-class EnvironmentalThemesAddView(SuccessMessageMixin,
-                                 CreateView):
+class EnvironmentalThemesAddView(MetadataCreateView):
     model = models.EnvironmentalTheme
     template_name = 'environmental_themes_edit.html'
     success_message = 'Theme added successfully'
@@ -68,9 +93,7 @@ class EnvironmentalThemesAddView(SuccessMessageMixin,
         return reverse('environmental_themes')
 
 
-class EnvironmentalThemeEditView(SuccessMessageMixin,
-                                 UpdateView):
-
+class EnvironmentalThemeEditView(MetadataUpdateView):
     model = models.EnvironmentalTheme
     template_name = 'environmental_themes_edit.html'
     success_message = 'Theme updated successfully'
@@ -79,7 +102,7 @@ class EnvironmentalThemeEditView(SuccessMessageMixin,
         return reverse('environmental_themes')
 
 
-class EnvironmentalThemeEnableDisableView(EnableDisableView):
+class EnvironmentalThemeEnableDisableView(MetadataEnableDisableView):
     model = models.EnvironmentalTheme
     success_message = 'Theme updated successfully'
 
@@ -87,13 +110,12 @@ class EnvironmentalThemeEnableDisableView(EnableDisableView):
         return reverse('environmental_themes')
 
 
-class CountriesView(ListView):
+class CountriesView(MetadataListView):
     model = models.Country
     template_name = 'countries.html'
 
 
-class CountriesAddView(SuccessMessageMixin,
-                       CreateView):
+class CountriesAddView(MetadataCreateView):
     model = models.Country
     template_name = 'countries_edit.html'
     success_message = 'Country added successfully'
@@ -102,9 +124,7 @@ class CountriesAddView(SuccessMessageMixin,
         return reverse('countries')
 
 
-class CountryEditView(SuccessMessageMixin,
-                      UpdateView):
-
+class CountryEditView(MetadataUpdateView):
     model = models.Country
     template_name = 'countries_edit.html'
     success_message = 'Country updated successfully'
@@ -114,7 +134,7 @@ class CountryEditView(SuccessMessageMixin,
         return reverse('countries')
 
 
-class CountryEnableDisableView(EnableDisableView):
+class CountryEnableDisableView(MetadataEnableDisableView):
     model = models.Country
     success_message = 'Country updated successfully'
 
