@@ -10,6 +10,9 @@ class ReplicatedModel(Model):
 
     class Meta:
         abstract = True
+        permissions = (
+            ('config', 'Can change configuration'),
+        )
 
     is_deleted = BooleanField(default=False)
 
