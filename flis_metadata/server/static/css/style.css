@@ -19,32 +19,6 @@ a {
     margin-top: 0;
 }
 
-.nav-study {
-    margin-bottom: 25px;
-}
-
-.language-remove {
-    position: relative;
-    top: 34px;
-}
-
-.language-remove a {
-    color: #a71414;
-}
-
-.outcome-list li {
-    padding-bottom: 10px;
-    padding-top: 10px;
-    border-bottom: 1px solid #ddd;
-}
-.outcome-list li:first-child {
-    padding-top: 0;
-}
-.outcome-list li:last-child {
-    padding-bottom: 0;
-    border: none;
-}
-
 .page-title {
     margin-bottom: 35px;
 }
