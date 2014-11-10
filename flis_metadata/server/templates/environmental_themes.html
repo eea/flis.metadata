@@ -26,8 +26,8 @@
     <thead>
         <tr>
             <th>Title</th>
-            <th></th>
             <th>Enabled in Choices</th>
+            <th></th>
         </tr>
     </thead>
 
@@ -39,19 +39,19 @@
             <a href="{{ edit_url }}">{{ object.title }}</a>
         </td>
         <td>
-            {% url 'environmental_themes_enable_disable' pk=object.pk as enable_disable_url %}
-            <form method="POST" role="form" action={{enable_disable_url}}>
-                {% include 'enable_disable_form.html' with object=object %}
-            </form>
-        </td>
-        <td>
             {% if object.is_deleted %}
             <span class="glyphicon glyphicon-remove"></span>
             {% else %}
             <span class="glyphicon glyphicon-ok"></span>
             {% endif %}
         </td>
-    </tr>
+        <td>
+            {% url 'environmental_themes_enable_disable' pk=object.pk as enable_disable_url %}
+            <form method="POST" role="form" action={{enable_disable_url}}>
+                {% include 'enable_disable_form.html' with object=object %}
+            </form>
+        </td>
+   </tr>
     {% endfor %}
     </tbody>
 
