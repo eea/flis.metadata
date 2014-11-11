@@ -8,7 +8,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='eea.flis.metadata',
-    version='0.1',
+    version='0.2',
     packages=['flis_metadata',
               'flis_metadata.client',
               'flis_metadata.common',
