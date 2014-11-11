@@ -22,5 +22,10 @@ Quick start
 
 3. Run `python manage.py syncdb` to create the metadata models.
 
-4. Run `python manage.py sync_remote_models` to sync the metadata models with
+4. Run `python manage.py migrate` to migrate the common app.
+   Note:
+    If you are using django below 1.7.0 run `pip install south` and add it to
+    INSTALLED_APPS.
+
+5. Run `python manage.py sync_remote_models` to sync the metadata models with
    the remote ones.
