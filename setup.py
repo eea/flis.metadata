@@ -8,11 +8,12 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='eea.flis.metadata',
-    version='0.2',
+    version='0.3',
     packages=['flis_metadata',
               'flis_metadata.client',
               'flis_metadata.common',
-              'flis_metadata.common.migrations'],
+              'flis_metadata.common.migrations',
+              'flis_metadata.common.south_migrations'],
     install_requires=['requests',
                       'django'],
     include_package_data=True,
