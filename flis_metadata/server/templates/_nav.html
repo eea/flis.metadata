@@ -1,7 +1,21 @@
+{% load utils %}
+
 <ul class="nav nav-tabs">
 
-  <li>
-  <a href="{% url 'home_view' %}">Home</a>
+  <li class="{% active '$' %}">
+    <a href="{% url 'home_view' %}">Home</a>
+
+  <li class="{% active 'countries/(.*)$' %}">
+    <a href={% url 'countries' %}>Countries</a>
+  </li>
+
+  <li class="{% active 'geographical_scopes/(.*)$' %}">
+    <a href={% url 'geographical_scopes' %}>Geographical Scopes</a>
+  </li>
+
+  <li class="{% active 'environmental_themes/(.*)$' %}">
+    <a href={% url 'environmental_themes' %}>Environmental Themes</a>
   </li>
 
 </ul>
+<br/>
