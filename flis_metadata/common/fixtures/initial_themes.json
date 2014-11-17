@@ -180,5 +180,12 @@
     "fields": {
       "title": "Water"
     }
+  },
+  {
+    "model": "common.environmentaltheme",
+    "pk":27,
+    "fields": {
+      "title": "Environmental scenarios and other foresights"
+    }
   }
 ]
