@@ -26,6 +26,7 @@
     <thead>
         <tr>
             <th>Title</th>
+            <th>Require Country</th>
             <th>Enabled in Choices</th>
             <th></th>
         </tr>
@@ -37,6 +38,13 @@
     <tr>
         <td>
             <a href="{{ edit_url }}">{{ object.title }}</a>
+        </td>
+        <td>
+            {% if object.require_country %}
+            <span class="glyphicon glyphicon-ok"></span>
+            {% else %}
+            <span class="glyphicon glyphicon-remove"></span>
+            {% endif %}
         </td>
         <td>
             {% if object.is_deleted %}
