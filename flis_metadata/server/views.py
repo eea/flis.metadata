@@ -1,6 +1,7 @@
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import render
 from django.views.generic import CreateView
 from django.views.generic import ListView
 from django.views.generic import TemplateView
@@ -14,9 +15,9 @@ from flis_metadata.server.forms import CountryEditForm
 class AdminRequiredMixin(object):
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated():
-            raise PermissionDenied()
+            return render(request, 'restricted.html')
         if not request.user.has_perm('common.config'):
-            raise PermissionDenied()
+            return render(request, 'restricted.html')
         return super(AdminRequiredMixin, self).dispatch(request, *args,
                                                         **kwargs)
 
