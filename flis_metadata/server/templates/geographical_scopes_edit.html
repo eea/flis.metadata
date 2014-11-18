@@ -42,6 +42,20 @@
           {% endif %}
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-9">
+          {{ form.require_country.label_tag }}
+          {% if form.require_country.field.required %}
+            <span class="required">*</span>
+          {% endif %}
+
+          {% render_field form.require_country class='form-checkbox' %}
+          {% if form.require_country.errors %}
+            <p class="text-danger">
+              <small>{{ form.require_country.errors.0 }}</small></p>
+          {% endif %}
+        </div>
+      </div>
     </div>
 
     <div class="form-group form-footer" style="margin-bottom: 0">
