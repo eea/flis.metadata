@@ -52,9 +52,9 @@ In :code:`flis.someapp` and other apps using this model
     1. Update :code:`eaa.flis.metadata` package in requirements.txt and
        install it.
     
-    2. For every relation to the foo model:
+    2. For every relation to the foo model::
+
            # add a new fake foreign key field
-        
            x = models.ForeingKey(Foo)
            fake_x = models.ForeingKey('common.Foo')
 
@@ -64,17 +64,19 @@ In :code:`flis.someapp` and other apps using this model
 
     3. Add a migration to add the new fields
 
-    4. Create a datamigration that:
-        1. Calls :code:`load_metadata_fixtures` management command
-        2. For every :code:`x` copies the same information in
-           :code:`fake_x` using the instance found in :code:`common.Foo`.
+    4. Create a datamigration that
 
-           obj.fake_x = orm['common.Foo'].objects.get(title=obj.x.title)
+           1. Calls :code:`load_metadata_fixtures` management command
 
-           # or
+           2. For every :code:`x` copies the same information in
+              :code:`fake_x` using the instance found in :code:`common.Foo`::
 
-           for y in obj.y.all():
-             obj.fake_y.add(orm['common.Foo'].objects.get(title=y.title)
+                obj.fake_x = orm['common.Foo'].objects.get(title=obj.x.title)
+
+                # or
+
+                for y in obj.y.all():
+                  obj.fake_y.add(orm['common.Foo'].objects.get(title=y.title)
 
     5. Remove the :code:`Foo` model and :code:`x` fields from
        :code:`flis.someapp`
@@ -87,6 +89,6 @@ In :code:`flis.someapp` and other apps using this model
        `fake_x` to `x`
 
     9. Run the migration in different corner cases.
-Note:
- You can browse through flis.flip, flis.horizon-scanning-tool or
- flis.live_catalogue to see an example of such migrations.
+     Note:
+      You can browse through flis.flip, flis.horizon-scanning-tool or
+      flis.live_catalogue to see an example of such migrations.
