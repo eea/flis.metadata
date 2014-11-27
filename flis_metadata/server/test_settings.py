@@ -24,4 +24,5 @@ USER_ROLES = ['Administrator']
 VIEW_ROLES = ('Administrator', 'Contributor', 'Viewer')
 EDIT_ROLES = ('Administrator', 'Contributor')
 
-
+METADATA_REMOTE_HOST = ''
+METADATA_REMOTE_PATH = ''
