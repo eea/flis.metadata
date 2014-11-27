@@ -20,7 +20,7 @@ class MaxRequestsReached(Exception):
 MAX_REQUESTS = 100
 
 
-def get_model_endpoint(model):
+def get_model_endpoint(name):
     host, path = settings.METADATA_REMOTE_HOST, settings.METADATA_REMOTE_PATH
     return '{0}{1}/api/v1/{2}/?format=json'.format(host, path, name.lower())
 
