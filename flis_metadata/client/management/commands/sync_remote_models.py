@@ -20,10 +20,14 @@ class MaxRequestsReached(Exception):
 MAX_REQUESTS = 100
 
 
+def get_model_endpoint(model):
+    host, path = settings.METADATA_REMOTE_HOST, settings.METADATA_REMOTE_PATH
+    return '{0}{1}/api/v1/{2}/?format=json'.format(host, path, name.lower())
+
+
 def get_model_instances(name, model):
     """For a given model get all instances using the remote API."""
-    endpoint = (settings.METADATA_REMOTE_HOST +
-                '/api/v1/{0}/?format=json'.format(name.lower()))
+    endpoint = get_model_endpoint(name)
 
     objects = []
     for _ in xrange(MAX_REQUESTS):

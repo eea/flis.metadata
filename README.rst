@@ -19,6 +19,7 @@ Quick start
 2. Add METADATA_REMOTE_HOST into your settings file::
 
      METADATA_REMOTE_HOST = 'http://localhost:8000'
+     METADATA_REMOTE_PATH = ''
 
 3. Run `python manage.py syncdb` to create the metadata models.
 
