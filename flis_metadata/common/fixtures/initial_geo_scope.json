@@ -4,7 +4,8 @@
     "pk": 1,
     "fields": {
       "title": "Beyond Europe",
-      "require_country": false
+      "require_country": false,
+      "sort_id": 1
     }
   },
   {
@@ -12,7 +13,8 @@
     "pk": 2,
     "fields": {
       "title": "European",
-      "require_country": false
+      "require_country": false,
+      "sort_id": 2
     }
   },
   {
@@ -20,7 +22,8 @@
     "pk": 3,
     "fields": {
       "title": "Regional",
-      "require_country": false
+      "require_country": false,
+      "sort_id": 3
     }
   },
   {
@@ -28,7 +31,8 @@
     "pk": 4,
     "fields": {
       "title": "Country",
-      "require_country": true
+      "require_country": true,
+      "sort_id": 4
     }
   },
   {
@@ -36,7 +40,8 @@
     "pk": 5,
     "fields": {
       "title": "World",
-      "require_country": false
+      "require_country": false,
+      "sort_id": 5
     }
   },
   {
@@ -44,7 +49,8 @@
     "pk": 6,
     "fields": {
       "title": "EU Country",
-      "require_country": true
+      "require_country": true,
+      "sort_id": 6
     }
   },
   {
@@ -52,7 +58,8 @@
     "pk": 7,
     "fields": {
       "title": "Sub-national",
-      "require_country": true
+      "require_country": true,
+      "sort_id": 7
     }
   }
 ]
