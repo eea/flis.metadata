@@ -21,10 +21,12 @@
 {% if object_list %}
 
 <table id="settings" width="100%"
-    class="table table-condensed table-bordered table-hover">
+    class="table table-condensed table-bordered table-hover sortable"
+    data-url="{% url 'update_order' metadata_name='country' %}">
 
     <thead>
         <tr>
+            <th class="handler"></th>
             <th>ISO</th>
             <th>Name</th>
             <th>Enabled in Choices</th>
@@ -35,7 +37,10 @@
     <tbody>
     {% for object in object_list %}
     {% url 'countries_edit' pk=object.pk as edit_url %}
-    <tr>
+    <tr id="items-{{ object.pk }}">
+        <td class="handler" width="20">
+            <span class="glyphicon glyphicon-align-justify"></span>
+        </td>
         <td>
             <a href="{{ edit_url }}">{{ object.iso }}</a>
         </td>
