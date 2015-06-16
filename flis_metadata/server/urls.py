@@ -54,4 +54,7 @@ urlpatterns = patterns(
     url(r'^environmental_themes/(?P<pk>\d+)/enable_disable$',
         views.EnvironmentalThemeEnableDisableView.as_view(),
         name='environmental_themes_enable_disable'),
+    url(r'^(?P<metadata_name>[^/]+)/update_order$',
+        views.MetadataUpdateOrder.as_view(),
+        name='update_order'),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

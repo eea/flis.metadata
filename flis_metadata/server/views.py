@@ -1,11 +1,12 @@
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import CreateView
 from django.views.generic import ListView
 from django.views.generic import TemplateView
 from django.views.generic import UpdateView
+from django.http import HttpResponse, Http404
 
 from flis_metadata.common import models
 from flis_metadata.server.forms import EnableDisableForm
@@ -141,3 +142,27 @@ class CountryEnableDisableView(MetadataEnableDisableView):
 
     def get_success_url(self):
         return reverse('countries')
+
+
+class MetadataUpdateOrder(MetadataUpdateView):
+
+    METADATA_NAME_TO_MODEL = {
+        'geoscope': models.GeographicalScope,
+        'envtheme': models.EnvironmentalTheme,
+        'country': models.Country,
+    }
+
+    def post(self, request, *args, **kwargs):
+        model_name = kwargs.get('metadata_name', None)
+        items = self.request.POST.getlist('items[]')
+
+        if not model_name in self.METADATA_NAME_TO_MODEL:
+            return Http404
+
+        for sort_idx, pk in enumerate(items):
+            entry = get_object_or_404(
+                self.METADATA_NAME_TO_MODEL[model_name], pk=pk)
+            entry.sort_id = sort_idx
+            entry.save()
+
+        return HttpResponse()
