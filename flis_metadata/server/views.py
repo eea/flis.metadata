@@ -6,7 +6,7 @@ from django.views.generic import CreateView
 from django.views.generic import ListView
 from django.views.generic import TemplateView
 from django.views.generic import UpdateView
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 
 from flis_metadata.common import models
 from flis_metadata.server.forms import EnableDisableForm
@@ -155,6 +155,9 @@ class MetadataUpdateOrder(MetadataUpdateView):
     def post(self, request, *args, **kwargs):
         model_name = kwargs.get('metadata_name', None)
         items = self.request.POST.getlist('items[]')
+
+        if not model_name in self.METADATA_NAME_TO_MODEL:
+            return Http404
 
         for sort_idx, pk in enumerate(items):
             entry = get_object_or_404(
