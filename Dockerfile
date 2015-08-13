@@ -11,8 +11,8 @@ RUN pip install -r requirements-dep.txt
 
 # Copy code
 COPY . /metadata
-COPY flis_metadata/server/local_settings.py.example flis_metadata/server/local_settings.py
 RUN ./manage.py collectstatic --noinput
+COPY flis_metadata/server/local_settings.py.docker flis_metadata/server/local_settings.py
 
 # Expose needed port
 EXPOSE 8004
