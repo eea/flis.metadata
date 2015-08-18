@@ -6,7 +6,9 @@ EXTRA_INSTALLED_APPS = (
 
 METADATA_REMOTE_API = 'http://localhost:8000/api/v1/'
 
-ASSETS_DEBUG = True
+DEBUG = TEMPLATE_DEBUG = ASSETS_DEBUG = os.environ.get('DEBUG', '')
+SECRET_KEY = os.environ.get('SECRET_KEY', '')
+
 
 DATABASES = {
     'default': {
