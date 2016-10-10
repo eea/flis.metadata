@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from tastypie.api import Api
@@ -12,8 +12,7 @@ for resource in resources:
     v1_api.register(resource())
 
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include(v1_api.urls)),
 
@@ -57,4 +56,4 @@ urlpatterns = patterns(
     url(r'^(?P<metadata_name>[^/]+)/update_order$',
         views.MetadataUpdateOrder.as_view(),
         name='update_order'),
-) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
