@@ -1,2 +1,26 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+eggs/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+.DS_Store
+.pypirc
+
+*.sqlite3
+sandbox/
 local_settings.py
-*.pyc
+flis_metadata/server/static/packed.css
+flis_metadata/server/static/packed.js
