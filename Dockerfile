@@ -12,7 +12,6 @@ RUN pip install -r requirements-dep.txt
 # Copy code
 COPY . /metadata
 RUN ./manage.py migrate \
-  && ./manage.py loadfixtures \
   && ./manage.py load_metadata_fixtures \
   && ./manage.py collectstatic --noinput
 COPY flis_metadata/server/local_settings.py.docker flis_metadata/server/local_settings.py
