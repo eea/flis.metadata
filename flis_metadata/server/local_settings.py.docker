@@ -4,15 +4,9 @@ EXTRA_INSTALLED_APPS = (
     'flis_metadata.client',
 )
 
-METADATA_REMOTE_API = os.environ.get('METADATA_REMOTE_API', '')
-
-DEBUG = TEMPLATE_DEBUG = ASSETS_DEBUG = os.environ.get('DEBUG', '')
-SECRET_KEY = os.environ.get('SECRET_KEY', '')
-
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.environ.get('DB_NAME', ''),
         'USER': os.environ.get('DB_USER', ''),
         'PASSWORD': os.environ.get('DB_PASSWORD', ''),
@@ -22,6 +16,18 @@ DATABASES = {
 }
 
 
+ALLOWED_HOSTS = eval(os.environ.get('ALLOWED_HOSTS', "['*']"))
+DEBUG = TEMPLATE_DEBUG = ASSETS_DEBUG = eval(os.environ.get('DEBUG', 'False'))
+FORCE_SCRIPT_NAME = os.environ.get('FORCE_SCRIPT_NAME', '')
+FRAME_COOKIES = eval(os.environ.get('FRAME_COOKIES', '[]'))
+#FRAME_EXTRA_SUBSTITUTIONS = eval(os.environ.get('FRAME_EXTRA_SUBSTITUTIONS', '[()]')
 FRAME_URL = os.environ.get('FRAME_URL', '')
-METADATA_REMOTE_HOST = os.environ.get('METADATA_REMOTE_HOST', '')
-METADATA_REMOTE_PATH = os.environ.get('METADATA_REMOTE_PATH','')
+#METADATA_REMOTE_HOST = os.environ.get('METADATA_REMOTE_HOST', '')
+#METADATA_REMOTE_PATH = os.environ.get('METADATA_REMOTE_PATH','')
+#SECRET_KEY = os.environ.get('SECRET_KEY', '')
+#SKIP_EDIT_AUTH = eval(os.environ.get('SKIP_EDIT_AUTH', 'False'))
+#SITE_URL = os.environ.get('SITE_URL', '')
+HOST_NAME = os.environ.get('HOST_NAME', '')
+STATIC_URL = HOST_NAME + FORCE_SCRIPT_NAME + 'static/'
+MEDIA_URL = STATIC_URL + 'media/'
+#USE_X_FORWARDED_HOST = True
