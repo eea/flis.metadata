@@ -29,5 +29,6 @@ FRAME_URL = os.environ.get('FRAME_URL', '')
 #SITE_URL = os.environ.get('SITE_URL', '')
 HOST_NAME = os.environ.get('HOST_NAME', '')
 STATIC_URL = HOST_NAME + FORCE_SCRIPT_NAME + 'static/'
+STATIC_ROOT = os.environ.get('STATIC_ROOT', '')
 MEDIA_URL = STATIC_URL + 'media/'
 #USE_X_FORWARDED_HOST = True
